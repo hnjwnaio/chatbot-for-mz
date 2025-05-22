@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>대화 시작 멘트 추천기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>대화 시작 멘트 추천기</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="situation">상황:</label>
+            <input type="text" id="situation" name="situation" required>
+            <span class="example">예) 직장동료, 소개팅 상대, 동아리 부원</span>
+        </div>
+        <div class="form-group">
+            <label for="topic">주제:</label>
+            <input type="text" id="topic" name="topic" required>
+            <span class="example">예) 출퇴근, 관심사 공유, 날씨 관련</span>
+        </div>
+        <input type="submit" value="추천 받기">
+    </form>
+    {% if result.start or result.end %}
+        <h2>✨ 추천 멘트:</h2>
+        {% if result.start %}
+            <p><strong>시작 멘트:</strong> {{ result.start }}</p>
+        {% endif %}
+        {% if result.end %}
+            <p><strong>마무리 멘트:</strong> {{ result.end }}</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
